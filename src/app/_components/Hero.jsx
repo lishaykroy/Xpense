@@ -1,8 +1,15 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function Hero() {
+
+    const { user , isSignedIn } = useUser();
 
     return (
 
@@ -35,6 +42,39 @@ function Hero() {
                 </ContainerScroll>
 
             </div>
+
+            {isSignedIn ? (
+
+                <div>
+
+                    <Link href="/dashboard">
+
+                        <Button className="rounded-full mb-6">
+
+                            My Dashbaord
+
+                        </Button>
+                    
+                    </Link>
+
+                </div>
+
+            ) : (
+                
+                <div>
+
+                    <Link href="/sign-in">
+
+                        <Button className="rounded-full mb-6">
+
+                            Get Started
+                            
+                        </Button>
+
+                    </Link>
+
+                </div>
+            )}
 
         </section>
 
